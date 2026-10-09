@@ -1,9 +1,12 @@
 {
     "name": "tech-test",
     "version": "1.0.0",
+    "engines": {
+      "node": "^22.13.0 || >=24.0.0"
+    },
     "scripts": {
       "build:backend": "mvn -f backend/pom.xml clean compile",
-      "build:frontend": "pnpm --prefix frontend build", 
+      "build:frontend": "pnpm --prefix frontend build",
       "build": "npm run build:backend && npm run build:frontend",
       "run:backend": "mvn -f backend/pom.xml spring-boot:run",
       "run:frontend": "pnpm --prefix frontend dev",
@@ -14,4 +17,3 @@
       "npm-run-all": "^4.1.5"
     }
   }
-  
