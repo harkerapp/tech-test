@@ -15,9 +15,9 @@ Maven:
 - Linux/WSL: `sudo [apt/dnf/pacman] install maven` (choose whatever package manager you have)
 - Windows (Using chocolatey): `choco install maven`
 
-Node.js 20+ (it should install npm too) [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
+Node.js 22.13+ or 24 LTS (it should install npm too) [https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager)
 
-PNPM 9+ [https://pnpm.io/installation](https://pnpm.io/installation) 
+PNPM 10+ [https://pnpm.io/installation](https://pnpm.io/installation)
 
 # Helpful Documentation/Tips
 
