@@ -47,19 +47,25 @@ Some tasks are marked with comments
 Note: After changes you will need to close the server with Ctrl+C in the terminal and re-run the build and start commands.
 
 
-> 💡 Usually you wouldn’t manually set an ID but for simplicity this task manually sends an ID in the API endpoint
+> 💡 Usually you wouldn’t manually set an ID, but for simplicity this task uses a client-supplied ID.
 
 
-1. In [Person.java](http://Person.java) add some more sensible attributes, don’t change the ID attribute.
-2. In [PersonService.java](http://PersonService.java) Finish implementing the logic for the POST endpoint to create a new person record in the database. Also populate the getPath/postPath with the URL path you want. 
-3. In [PersonController.java](http://PersonController.java) and [PersonService.java](http://PersonService.java) Implement a new PUT endpoint for updating, which should use an ID to update a specific record.
+You are building a small person directory. The person fields, GET endpoints and basic POST/PUT save logic are provided. The starter code saves records, but does not yet enforce the rules below. Your task is to correct its behaviour. Keep the existing ID attribute and endpoint paths.
+
+1. **Validate and normalise input.** For both POST and PUT, `fullName` must contain at least one non-whitespace character. Return HTTP 400 for a missing, null or blank name without changing the database. Remove leading and trailing whitespace from a valid name before saving it. Choose where to put this logic and how to share it between create and update. For example, `"  Sam Taylor  "` should be stored as `"Sam Taylor"`. `email` is optional; email-format validation is not required. Feel free to add any extra validation or normalisation that you see fit. 
+
+2. **Make create safe to repeat.** POST currently saves directly, which can overwrite a person with the same ID. Change it so a duplicate ID cannot change the existing record. Choose either to reject the request with an appropriate status code. A new ID should still create and return a person. Decide how to check for an existing record using the repository.
+
+3. **Update only an existing person.** PUT takes the ID from the request body. Update the person with that ID and return the saved record. If the ID does not exist, return an appropraite status code without creating a record. Update requests include `fullName`, but may omit `email`: choose whether an omitted/null email clears the stored email or keeps its previous value. Both policies are acceptable.
+
+In the interview, we will use your implementation as the starting point for discussion.
 
 ### Frontend:
 
 Note: This frontend has fast refresh so any saved changes are reflected instantly on the web page, no need for rebuilding.
 
-1. In PersonForm.tsx Add your custom attributes to the personSchema (zod has built in validation methods you can use), then populate your postPath & putPath, finally add your attributes as input fields to the form.
-2. Add some validation for one of your Person fields, this can be done however and wherever you choose (e.g. validate an email is in the correct format or names start with capital letters).
+1. In PersonForm.tsx add `fullName` and optional `email` to the personSchema, populate postPath & putPath with `/people`, and add input fields for both attributes to the form.
+2. The backend name validation satisfies the field-validation requirement. You may also add frontend validation, but it is not required.
 3. In PersonForm.tsx Add a dynamic success message depending on whether the user has created or updated a person.
 4. In PersonView.tsx use the GET endpoint to fetch and return a specific Person from their id when the View button is pressed. Then display the response below the View button.
 5. In App.tsx, PersonForm.tsx and PersonView.tsx, there is already some basic styling but it is incomplete and unprofessional, your task is to add more styling using tailwindcss (e.g. spacing, alignment, shapes and colours). You can use tailwind’s default colours or add some of your own in the tailwind.config.js file. There is a lot of freedom here to show off frontend skills, you can completely redesign the layout, and change anything about the styling you want as long as all previous functionality is possible.
