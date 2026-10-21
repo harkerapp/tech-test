@@ -54,7 +54,7 @@ You are building a small person directory. The person fields, GET endpoints and 
 
 1. **Validate and normalise input.** For both POST and PUT, `fullName` must contain at least one non-whitespace character. Return HTTP 400 for a missing, null or blank name without changing the database. Remove leading and trailing whitespace from a valid name before saving it. Choose where to put this logic and how to share it between create and update. For example, `"  Sam Taylor  "` should be stored as `"Sam Taylor"`. `email` is optional; email-format validation is not required. Feel free to add any extra validation or normalisation that you see fit. 
 
-2. **Make create safe to repeat.** POST currently saves directly, which can overwrite a person with the same ID. Change it so a duplicate ID cannot change the existing record. Choose either to reject the request with an appropriate status code. A new ID should still create and return a person. Decide how to check for an existing record using the repository.
+2. **Make create safe to repeat.** POST currently saves directly, which can overwrite a person with the same ID. Change it so a duplicate ID cannot change the existing record. Implement appropriate handling. A new ID should still create and return a person. Decide how to check for an existing record using the repository.
 
 3. **Update only an existing person.** PUT takes the ID from the request body. Update the person with that ID and return the saved record. If the ID does not exist, return an appropraite status code without creating a record. Update requests include `fullName`, but may omit `email`: choose whether an omitted/null email clears the stored email or keeps its previous value. Both policies are acceptable.
 

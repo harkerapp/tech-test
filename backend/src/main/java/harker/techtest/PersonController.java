@@ -17,19 +17,19 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    private final String peroplePath = "/people";
+    private final String peoplePath = "/people";
 
     @GetMapping(peoplePath)
     public List<Person> getPeople() {
         return personService.getAllPeople();
     }
 
-    @GetMapping(peroplePath + "/{id}")
+    @GetMapping(peoplePath + "/{id}")
     public Person getPerson(@PathVariable("id") String id) {
         return personService.getPerson(id);
     }
 
-    @PostMapping(peroplePath)
+    @PostMapping(peoplePath)
     public Person postPerson(@RequestBody Person personModel) {
         return personService.postPerson(personModel);
     }
