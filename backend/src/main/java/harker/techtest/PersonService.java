@@ -25,9 +25,13 @@ public class PersonService {
     }
 
     public Person postPerson(Person person) {
-        // Task 2
 
-        return person;
+        return personRepository.save(person);
+    }
+
+    public Person putPerson(Person person) {
+
+        return personRepository.save(person);
     }
     
 }

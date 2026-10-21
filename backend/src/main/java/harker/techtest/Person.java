@@ -9,6 +9,7 @@ public class Person {
     @Id
     public String id;
 
-    // Task 1
+    public String fullName;
+    public String email;
 
 }
